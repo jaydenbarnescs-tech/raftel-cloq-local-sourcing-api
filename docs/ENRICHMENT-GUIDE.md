@@ -39,6 +39,8 @@
 
 通常は `partner_company_enrichment` に入力してください。テーブル名には `enrichment` が入っていますが、ここでの用途はフォーム営業用の国内ソーシング情報の入力です。
 
+`corporate_number` は必須ではありません。法人番号が分からない場合は、会社名、公式サイト、問い合わせフォームURL、業務内容、根拠URLを優先してください。
+
 ```json
 {
   "corporate_number": "1234567890123",

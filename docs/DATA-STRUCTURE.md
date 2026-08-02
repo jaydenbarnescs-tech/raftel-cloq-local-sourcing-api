@@ -24,7 +24,7 @@
 
 主なカラム:
 
-- `corporate_number`: 法人番号
+- `corporate_number`: 法人番号。分かる場合だけ入力。未入力でも登録可能
 - `company_name`: 会社名
 - `website_url`: 公式Webサイト
 - `primary_email`: メールアドレス
@@ -57,7 +57,7 @@
 
 主なカラム:
 
-- `corporate_number`: 法人番号
+- `corporate_number`: 法人番号。分かる場合だけ入力。未入力でも登録可能
 - `company_name`: 会社名
 - `field_name`: 項目名
 - `field_value`: 値

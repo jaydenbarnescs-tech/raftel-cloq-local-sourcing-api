@@ -94,6 +94,36 @@ partner_company_enrichment
 
 テーブル名に `enrichment` が入っていますが、ここでは「フォーム営業用の国内ソーシング情報」と考えてください。
 
+## 法人番号は必須ではありません
+
+`corporate_number` は分かる場合だけ入力してください。
+
+フォーム営業用のソーシングでは、法人番号が分からなくても次の情報があれば登録して大丈夫です。
+
+- `company_name`: 会社名
+- `website_url`: 公式Webサイト
+- `contact_form_url`: 問い合わせフォームURL
+- `business_description`: 業務内容
+- `industry_primary`: 業界
+- `evidence_url`: 根拠URL
+
+法人番号がない例:
+
+```json
+{
+  "company_name": "法人番号未確認サンプル株式会社",
+  "website_url": "https://example.jp/",
+  "contact_form_url": "https://example.jp/contact",
+  "business_description": "食品工場向け包装資材の製造・販売",
+  "industry_primary": "製造業",
+  "target_relevance": "公式問い合わせフォームがあるためフォーム営業候補。",
+  "confidence": 0.78,
+  "evidence_url": "https://example.jp/company"
+}
+```
+
+`corporate_number` を空文字で送っても、API側では未入力として扱います。
+
 ## まず何を入力すればいいか
 
 優先順位は次の通りです。
@@ -329,6 +359,8 @@ CSVのカラム例:
 corporate_number,company_name,website_url,contact_form_url,business_description,industry_primary,target_relevance,exclusion_reason,employee_count_text,phone_number,primary_email,confidence,evidence_url,notes
 1234567890123,サンプル株式会社,https://example.jp/,https://example.jp/contact,食品工場向け包装資材の製造・販売,製造業,B2B商材で公式問い合わせフォームあり,,10〜50名,03-1234-5678,info@example.jp,0.86,https://example.jp/company,公式サイト確認済み
 ```
+
+法人番号がない場合は、`corporate_number` 列を空のままにしてください。
 
 ## Pythonから使う
 
