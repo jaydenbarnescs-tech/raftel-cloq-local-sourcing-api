@@ -21,12 +21,6 @@ API:
 https://mgc-pass-proxy.duckdns.org/setoyama-api
 ```
 
-API簡易ドキュメント:
-
-```text
-https://mgc-pass-proxy.duckdns.org/setoyama-api/docs
-```
-
 OpenAPI:
 
 ```text
@@ -34,6 +28,8 @@ https://mgc-pass-proxy.duckdns.org/setoyama-api/openapi.json
 ```
 
 APIのURLには歴史的な理由で `setoyama-api` が入っていますが、用途は Raftel / CLOQ の国内ソーシング・フォーム営業APIです。
+
+ドキュメントはこのGitHub READMEを正本にします。API側の `/docs` は使いません。
 
 APIトークンは別途共有します。GitHub、Slack、Notionなど公開される場所には絶対に貼らないでください。
 

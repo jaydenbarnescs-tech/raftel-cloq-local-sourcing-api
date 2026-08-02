@@ -18,7 +18,6 @@ Authorization: Bearer <token>
 
 ## エンドポイント
 
-- `GET /docs`: 簡易ドキュメント
 - `GET /openapi.json`: OpenAPI定義
 - `GET /health`: APIの状態確認
 - `GET /tables`: テーブル一覧
