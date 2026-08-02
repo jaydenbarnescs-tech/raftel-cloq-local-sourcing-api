@@ -1,0 +1,4 @@
+corporate_number,company_name,website_url,contact_form_url,business_description,industry_primary,target_relevance,exclusion_reason,employee_count_text,phone_number,primary_email,confidence,evidence_url,notes
+1234567890123,サンプル株式会社,https://example.jp/,https://example.jp/contact,食品工場向け包装資材の製造・販売,製造業,B2B商材で公式問い合わせフォームあり,,10〜50名,03-1234-5678,info@example.jp,0.86,https://example.jp/company,公式サイト確認済み
+9876543210987,除外サンプル株式会社,https://exclude.example.jp/,,学校法人向け教育サービス,教育,フォーム営業対象外の可能性,学校・教育機関,100〜300名,,,0.78,https://exclude.example.jp/about,除外理由の例
+
