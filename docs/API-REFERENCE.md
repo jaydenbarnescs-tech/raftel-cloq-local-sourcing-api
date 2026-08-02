@@ -1,37 +1,41 @@
-# API Reference
+# Raftel / CLOQ 国内ソーシングAPIリファレンス
 
-Base URL:
+フォーム営業用の会社調査データを入力・確認するためのAPIです。
+
+瀬戸山さんはフォーム営業に必要な会社情報を入力します。メール営業用のメールソーシング、送信管理、送信履歴管理はJayden側で扱います。
+
+ベースURL:
 
 ```text
 https://mgc-pass-proxy.duckdns.org/setoyama-api
 ```
 
-Auth header:
+認証ヘッダー:
 
 ```text
 Authorization: Bearer <token>
 ```
 
-## Endpoints
+## エンドポイント
 
-- `GET /docs`
-- `GET /openapi.json`
-- `GET /health`
-- `GET /tables`
-- `GET /schema`
-- `GET /schema/{table}`
-- `GET /tables/{table}/rows?limit=100&offset=0`
-- `POST /tables/{table}/rows`
-- `GET /tables/{table}/rows/{rowid}`
-- `PATCH /tables/{table}/rows/{rowid}`
-- `DELETE /tables/{table}/rows/{rowid}`
-- `POST /sql/query`
-- `POST /sql/execute`
-- `GET /devices`
-- `POST /devices/approve`
-- `POST /devices/revoke`
+- `GET /docs`: 簡易ドキュメント
+- `GET /openapi.json`: OpenAPI定義
+- `GET /health`: APIの状態確認
+- `GET /tables`: テーブル一覧
+- `GET /schema`: スキーマ概要
+- `GET /schema/{table}`: 指定テーブルのスキーマ
+- `GET /tables/{table}/rows?limit=100&offset=0`: 指定テーブルの行一覧
+- `POST /tables/{table}/rows`: 行を追加
+- `GET /tables/{table}/rows/{rowid}`: 指定行を取得
+- `PATCH /tables/{table}/rows/{rowid}`: 指定行を更新
+- `DELETE /tables/{table}/rows/{rowid}`: 指定行を削除
+- `POST /sql/query`: SELECT / WITH クエリを実行
+- `POST /sql/execute`: SQLを実行
+- `GET /devices`: 承認済み・承認待ち端末一覧
+- `POST /devices/approve`: 新しい端末を承認
+- `POST /devices/revoke`: 端末承認を取り消し
 
-## Query Example
+## クエリ例
 
 ```bash
 curl --compressed -X POST https://mgc-pass-proxy.duckdns.org/setoyama-api/sql/query \
@@ -41,7 +45,7 @@ curl --compressed -X POST https://mgc-pass-proxy.duckdns.org/setoyama-api/sql/qu
   -d '{"sql":"SELECT company_name, website_url, industry_primary FROM partner_company_enrichment LIMIT 20"}'
 ```
 
-## Update Example
+## 更新例
 
 ```bash
 curl --compressed -X PATCH https://mgc-pass-proxy.duckdns.org/setoyama-api/tables/partner_company_enrichment/rows/1 \
@@ -51,11 +55,11 @@ curl --compressed -X PATCH https://mgc-pass-proxy.duckdns.org/setoyama-api/table
   -d '{"row":{"industry_primary":"製造業","confidence":0.9}}'
 ```
 
-## Device Approval
+## 端末承認
 
-The first authenticated browser/device is approved automatically.
+最初に認証されたブラウザ・端末は自動で承認されます。
 
-New devices receive:
+別の端末からアクセスすると、次のようなレスポンスが返ります。
 
 ```json
 {
@@ -66,13 +70,12 @@ New devices receive:
 }
 ```
 
-Approve from an already-approved device:
+すでに承認済みの端末から、承認コードを使って新しい端末を承認してください。
 
 ```bash
 curl --compressed -X POST https://mgc-pass-proxy.duckdns.org/setoyama-api/devices/approve \
   -b setoyama.cookies -c setoyama.cookies \
   -H "Authorization: Bearer $SETOYAMA_API_TOKEN" \
   -H "Content-Type: application/json" \
-  -d '{"approval_code":"123456","label":"assistant laptop"}'
+  -d '{"approval_code":"123456","label":"瀬戸山さん 作業PC"}'
 ```
-

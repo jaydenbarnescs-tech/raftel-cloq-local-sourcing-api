@@ -1,39 +1,43 @@
-# Enrichment Guide
+# フォーム営業ソーシングガイド
 
-This guide explains what information is most useful and how to record it.
+このページでは、Raftel / CLOQ の国内ソーシングで、瀬戸山さんにどの情報を優先して調査・入力してほしいかを説明します。
 
-## Best Enrichment Fields
+目的はフォーム営業です。メール営業用のメールソーシング、送信管理、送信履歴管理はJayden側で行います。
 
-| Priority | Field | Japanese label | What to collect | Good source |
+## 優先して調査・入力してほしい項目
+
+| 優先度 | フィールド名 | 日本語ラベル | 入れてほしい内容 | 良い情報源 |
 | --- | --- | --- | --- | --- |
-| 1 | `primary_email` | メールアドレス | Public company-domain contact/sales/recruiting email. | Official contact/recruiting page |
-| 2 | `contact_form_url` | 問い合わせフォームURL | Direct inquiry/contact form URL. | Official website |
-| 3 | `website_url` | 公式Webサイト | Canonical official company site. | Official site/search/company profile |
-| 4 | `employee_count` / `employee_count_text` | 従業員数 | Count or range, plus source. | Company profile, gBizINFO, recruiting page |
-| 5 | `industry_primary` | 業界 | Primary industry/category in Japanese. | Company profile, official services page |
-| 6 | `business_description` | 業務内容 | Short factual description of what the company does. | About/services/product pages |
-| 7 | `phone_number` | 電話番号 | Main company phone number. | Official site/company profile |
-| 8 | `representative_name` | 代表者名 | Public representative name. | Company profile/filings |
-| 9 | `employee_accounts_json` | 社員アカウント | Public staff, team, recruiting, Wantedly, LinkedIn, or SNS accounts. | Public profiles only |
-| 10 | `target_relevance` | 営業対象としての理由 | Why this company is relevant for form/email outreach. | Human or AI review |
-| 11 | `exclusion_reason` | 除外理由 | Why this company should not be contacted. | Human or AI review |
+| 1 | `contact_form_url` | 問い合わせフォームURL | 問い合わせフォームに直接アクセスできるURL。フォーム営業では最重要。 | 公式サイト |
+| 2 | `website_url` | 公式Webサイト | 会社の公式サイトURL。ポータルサイトや一覧ページではなく公式サイト。 | 公式サイト、検索結果、会社プロフィール |
+| 3 | `primary_email` | メールアドレス | 会社ドメインの公開メールアドレス。問い合わせ・営業・採用窓口など。メール営業側でも参考にする。 | 公式サイトの問い合わせ・会社概要・採用ページ |
+| 4 | `employee_count` / `employee_count_text` | 従業員数 | 従業員数、または「10〜50名」のような規模感。 | 会社概要、gBizINFO、採用ページ |
+| 5 | `industry_primary` | 業界 | 主な業界・カテゴリ。日本語で入力。 | 会社概要、事業内容、サービスページ |
+| 6 | `business_description` | 業務内容 | その会社が何をしている会社かの短い説明。 | 会社概要、事業内容、商品・サービスページ |
+| 7 | `phone_number` | 電話番号 | 代表電話番号。 | 公式サイト、会社概要 |
+| 8 | `representative_name` | 代表者名 | 公開されている代表者名。 | 会社概要、登記・公開情報 |
+| 9 | `employee_accounts_json` | 社員アカウント | 公開されている社員、チーム、採用、Wantedly、LinkedIn、SNSなど。 | 公開プロフィールのみ |
+| 10 | `target_relevance` | フォーム営業対象としての理由 | なぜフォーム営業対象として良さそうか。 | 人の判断、AI判定、根拠URL |
+| 11 | `exclusion_reason` | 除外理由 | なぜ営業対象から外すべきか。 | 人の判断、AI判定、根拠URL |
 
-## Quality Rules
+## 品質ルール
 
-Evidence is more important than perfect formatting.
+完璧な形式よりも、根拠があることを優先してください。
 
-Use `evidence_url` whenever possible. Use `confidence` from `0.0` to `1.0`:
+可能な限り `evidence_url` に根拠URLを入れてください。
 
-- `0.95`: official company source and exact match
-- `0.80`: strong public source but not directly official
-- `0.60`: likely match, needs later review
-- below `0.60`: put details in `notes` and treat as uncertain
+`confidence` は `0.0` から `1.0` で入力してください。
 
-Do not collect private personal email addresses. Public company/team contact addresses are fine.
+- `0.95`: 公式情報で、会社名・内容が明確に一致している
+- `0.80`: かなり信頼できる公開情報だが、公式情報ではない
+- `0.60`: おそらく正しいが、後で確認したい
+- `0.60` 未満: `notes` に不確実な理由を書いてください
 
-## Recommended Row Shape
+非公開の個人メールアドレスは収集しないでください。会社として公開されている代表メール、問い合わせメール、採用メールなどは問題ありません。
 
-Use `partner_company_enrichment` for normal work.
+## 推奨する入力形式
+
+通常は `partner_company_enrichment` に入力してください。テーブル名には `enrichment` が入っていますが、ここでの用途はフォーム営業用の国内ソーシング情報の入力です。
 
 ```json
 {
@@ -59,11 +63,11 @@ Use `partner_company_enrichment` for normal work.
 }
 ```
 
-## Exclusion Examples
+## 除外理由の例
 
-Use `exclusion_reason` when a company should not be contacted.
+フォーム営業対象から外すべき場合は、`exclusion_reason` に理由を入れてください。
 
-Examples:
+例:
 
 - `競合`
 - `行政・自治体`
@@ -74,5 +78,4 @@ Examples:
 - `会社閉鎖・事業停止`
 - `問い合わせ先が見つからない`
 
-Deletion in Setoyama's database does not delete our master data. If a large count drop happens, the sync sends an alert for review.
-
+瀬戸山さん側のデータベースで行を削除しても、私たちの会社マスターデータは削除されません。件数が大きく減った場合は、同期側で確認用アラートを出します。
