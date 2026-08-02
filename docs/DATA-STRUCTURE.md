@@ -69,7 +69,7 @@ Important columns:
 Setoyama-san can create extra tables with:
 
 ```bash
-curl -X POST https://mgc-pass-proxy.duckdns.org/setoyama-api/sql/execute \
+curl --compressed -X POST https://mgc-pass-proxy.duckdns.org/setoyama-api/sql/execute \
   -b setoyama.cookies -c setoyama.cookies \
   -H "Authorization: Bearer $SETOYAMA_API_TOKEN" \
   -H "Content-Type: application/json" \

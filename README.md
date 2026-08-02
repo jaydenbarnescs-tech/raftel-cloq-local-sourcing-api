@@ -35,7 +35,7 @@ Use the token with a cookie jar. The first authenticated device is automatically
 ```bash
 export SETOYAMA_API_TOKEN="paste-token-here"
 
-curl -b setoyama.cookies -c setoyama.cookies \
+curl --compressed -b setoyama.cookies -c setoyama.cookies \
   -H "Authorization: Bearer $SETOYAMA_API_TOKEN" \
   https://mgc-pass-proxy.duckdns.org/setoyama-api/tables
 ```
@@ -43,7 +43,7 @@ curl -b setoyama.cookies -c setoyama.cookies \
 If another device tries to connect, the API returns an approval code. Approve it from an already approved device:
 
 ```bash
-curl -X POST https://mgc-pass-proxy.duckdns.org/setoyama-api/devices/approve \
+curl --compressed -X POST https://mgc-pass-proxy.duckdns.org/setoyama-api/devices/approve \
   -b setoyama.cookies -c setoyama.cookies \
   -H "Authorization: Bearer $SETOYAMA_API_TOKEN" \
   -H "Content-Type: application/json" \
@@ -97,7 +97,7 @@ See [docs/ENRICHMENT-GUIDE.md](docs/ENRICHMENT-GUIDE.md) for examples.
 List tables:
 
 ```bash
-curl -b setoyama.cookies -c setoyama.cookies \
+curl --compressed -b setoyama.cookies -c setoyama.cookies \
   -H "Authorization: Bearer $SETOYAMA_API_TOKEN" \
   https://mgc-pass-proxy.duckdns.org/setoyama-api/tables
 ```
@@ -105,7 +105,7 @@ curl -b setoyama.cookies -c setoyama.cookies \
 Inspect the recommended table schema:
 
 ```bash
-curl -b setoyama.cookies -c setoyama.cookies \
+curl --compressed -b setoyama.cookies -c setoyama.cookies \
   -H "Authorization: Bearer $SETOYAMA_API_TOKEN" \
   https://mgc-pass-proxy.duckdns.org/setoyama-api/schema/partner_company_enrichment
 ```
@@ -113,7 +113,7 @@ curl -b setoyama.cookies -c setoyama.cookies \
 Insert one enriched company:
 
 ```bash
-curl -X POST https://mgc-pass-proxy.duckdns.org/setoyama-api/tables/partner_company_enrichment/rows \
+curl --compressed -X POST https://mgc-pass-proxy.duckdns.org/setoyama-api/tables/partner_company_enrichment/rows \
   -b setoyama.cookies -c setoyama.cookies \
   -H "Authorization: Bearer $SETOYAMA_API_TOKEN" \
   -H "Content-Type: application/json" \

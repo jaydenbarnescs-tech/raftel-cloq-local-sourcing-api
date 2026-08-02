@@ -34,7 +34,7 @@ Authorization: Bearer <token>
 ## Query Example
 
 ```bash
-curl -X POST https://mgc-pass-proxy.duckdns.org/setoyama-api/sql/query \
+curl --compressed -X POST https://mgc-pass-proxy.duckdns.org/setoyama-api/sql/query \
   -b setoyama.cookies -c setoyama.cookies \
   -H "Authorization: Bearer $SETOYAMA_API_TOKEN" \
   -H "Content-Type: application/json" \
@@ -44,7 +44,7 @@ curl -X POST https://mgc-pass-proxy.duckdns.org/setoyama-api/sql/query \
 ## Update Example
 
 ```bash
-curl -X PATCH https://mgc-pass-proxy.duckdns.org/setoyama-api/tables/partner_company_enrichment/rows/1 \
+curl --compressed -X PATCH https://mgc-pass-proxy.duckdns.org/setoyama-api/tables/partner_company_enrichment/rows/1 \
   -b setoyama.cookies -c setoyama.cookies \
   -H "Authorization: Bearer $SETOYAMA_API_TOKEN" \
   -H "Content-Type: application/json" \
@@ -69,7 +69,7 @@ New devices receive:
 Approve from an already-approved device:
 
 ```bash
-curl -X POST https://mgc-pass-proxy.duckdns.org/setoyama-api/devices/approve \
+curl --compressed -X POST https://mgc-pass-proxy.duckdns.org/setoyama-api/devices/approve \
   -b setoyama.cookies -c setoyama.cookies \
   -H "Authorization: Bearer $SETOYAMA_API_TOKEN" \
   -H "Content-Type: application/json" \
