@@ -1,0 +1,5 @@
+setoyama.cookies
+.env
+*.sqlite3
+*.db
+

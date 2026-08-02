@@ -1,0 +1,24 @@
+{
+  "row": {
+    "corporate_number": "1234567890123",
+    "company_name": "サンプル株式会社",
+    "website_url": "https://example.jp/",
+    "primary_email": "info@example.jp",
+    "contact_form_url": "https://example.jp/contact",
+    "phone_number": "03-1234-5678",
+    "employee_count": 52,
+    "employee_source_url": "https://example.jp/company",
+    "industry_primary": "製造業",
+    "industry_tags_json": "[\"包装資材\", \"B2B\"]",
+    "business_description": "食品工場向け包装資材の製造・販売",
+    "representative_name": "山田 太郎",
+    "representative_position": "代表取締役",
+    "employee_accounts_json": "[{\"name\":\"採用ページ\",\"url\":\"https://example.jp/recruit\"}]",
+    "target_relevance": "フォーム営業対象。B2B商材で公式問い合わせフォームあり。",
+    "exclusion_reason": "",
+    "confidence": 0.86,
+    "evidence_url": "https://example.jp/company",
+    "notes": "公式サイト確認済み"
+  }
+}
+
